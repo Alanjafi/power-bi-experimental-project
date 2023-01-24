@@ -9971,12 +9971,18 @@ class CircleSettings extends FormattingSettingsCard {
         });
         this.circleThickness = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .NumUpDown */ .L_({
             name: "circleThickness",
-            displayName: "Thickness",
+            displayName: "Stroke thickness",
             value: 2
+        });
+        // add a new field here with displayName "Stroke color" and initial value of black "#000000"
+        this.strokeColor = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
+            name: "strokeColor",
+            displayName: "Stroke color",
+            value: { value: "#000000" }
         });
         this.name = "circle";
         this.displayName = "Circle";
-        this.slices = [this.circleColor, this.circleThickness];
+        this.slices = [this.circleColor, this.circleThickness, this.strokeColor];
     }
 }
 class VisualSettings extends FormattingSettingsModel {
@@ -10057,7 +10063,7 @@ class Visual {
         this.circle
             .style("fill", this.visualSettings.circle.circleColor.value.value)
             .style("fill-opacity", 0.5)
-            .style("stroke", "black")
+            .style("stroke", this.visualSettings.circle.strokeColor.value.value)
             .style("stroke-width", this.visualSettings.circle.circleThickness.value)
             .attr("r", radius)
             .attr("cx", width / 2)

@@ -76,7 +76,7 @@ export class Visual implements IVisual {
         this.circle
             .style("fill", this.visualSettings.circle.circleColor.value.value)   
             .style("fill-opacity", 0.5)
-            .style("stroke", "black")
+            .style("stroke", this.visualSettings.circle.strokeColor.value.value)
             .style("stroke-width", this.visualSettings.circle.circleThickness.value)
             .attr("r", radius)
             .attr("cx", width / 2)
