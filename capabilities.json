@@ -8,11 +8,8 @@
     ],
     "objects": {
         "circle": {
-            "displayName": "Circle",
             "properties": {
                 "circleColor": {
-                    "displayName": "Color",
-                    "description": "The fill color of the circle.",
                     "type": {
                         "fill": {
                             "solid": {
@@ -22,8 +19,6 @@
                     }
                 },
                 "circleThickness": {
-                    "displayName": "Thickness",
-                    "description": "The circle thickness.",
                     "type": {
                         "numeric": true
                     }

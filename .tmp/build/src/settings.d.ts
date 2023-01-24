@@ -1,8 +1,15 @@
-import { dataViewObjectsParser } from "powerbi-visuals-utils-dataviewutils";
-export declare class CircleSettings {
-    circleColor: string;
-    circleThickness: number;
+import { formattingSettings } from "powerbi-visuals-utils-formattingmodel";
+import FormattingSettingsCard = formattingSettings.Card;
+import FormattingSettingsSlice = formattingSettings.Slice;
+import FormattingSettingsModel = formattingSettings.Model;
+export declare class CircleSettings extends FormattingSettingsCard {
+    circleColor: formattingSettings.ColorPicker;
+    circleThickness: formattingSettings.NumUpDown;
+    name: string;
+    displayName: string;
+    slices: FormattingSettingsSlice[];
 }
-export declare class VisualSettings extends dataViewObjectsParser.DataViewObjectsParser {
+export declare class VisualSettings extends FormattingSettingsModel {
     circle: CircleSettings;
+    cards: FormattingSettingsCard[];
 }
