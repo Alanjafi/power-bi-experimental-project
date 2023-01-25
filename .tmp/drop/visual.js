@@ -9436,12 +9436,14 @@ var dependencies = {"d3-array":"1","d3-axis":"1","d3-brush":"1","d3-chord":"1","
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GN": () => (/* binding */ AutoDropdown),
 /* harmony export */   "Hn": () => (/* binding */ Model),
 /* harmony export */   "L_": () => (/* binding */ NumUpDown),
 /* harmony export */   "Zb": () => (/* binding */ Card),
+/* harmony export */   "xp": () => (/* binding */ FontPicker),
 /* harmony export */   "zH": () => (/* binding */ ColorPicker)
 /* harmony export */ });
-/* unused harmony exports SimpleSlice, AlignmentGroup, ToggleSwitch, Slider, DatePicker, ItemDropdown, AutoDropdown, DurationPicker, ErrorRangeControl, FieldPicker, ItemFlagsSelection, AutoFlagsSelection, TextInput, TextArea, FontPicker, GradientBar, ImageUpload, ListEditor, ReadOnlyText, ShapeMapSelector, CompositeSlice, FontControl, MarginPadding, Container, ContainerItem */
+/* unused harmony exports SimpleSlice, AlignmentGroup, ToggleSwitch, Slider, DatePicker, ItemDropdown, DurationPicker, ErrorRangeControl, FieldPicker, ItemFlagsSelection, AutoFlagsSelection, TextInput, TextArea, GradientBar, ImageUpload, ListEditor, ReadOnlyText, ShapeMapSelector, CompositeSlice, FontControl, MarginPadding, Container, ContainerItem */
 /* harmony import */ var _utils_FormattingSettingsUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3827);
 /**
  * Powerbi utils components classes for custom visual formatting pane objects
@@ -9560,7 +9562,7 @@ class ItemDropdown extends (/* unused pure expression or super */ null && (Simpl
         return Object.assign(Object.assign({}, super.getFormattingComponent(objectName)), { items: this.items });
     }
 }
-class AutoDropdown extends (/* unused pure expression or super */ null && (SimpleSlice)) {
+class AutoDropdown extends SimpleSlice {
     constructor(object) {
         super(object);
         this.type = "Dropdown" /* visuals.FormattingComponent.Dropdown */;
@@ -9626,7 +9628,7 @@ class TextArea extends (/* unused pure expression or super */ null && (TextInput
         this.type = "TextArea" /* visuals.FormattingComponent.TextArea */;
     }
 }
-class FontPicker extends (/* unused pure expression or super */ null && (SimpleSlice)) {
+class FontPicker extends SimpleSlice {
     constructor() {
         super(...arguments);
         this.type = "FontPicker" /* visuals.FormattingComponent.FontPicker */;
@@ -9974,15 +9976,26 @@ class CircleSettings extends FormattingSettingsCard {
             displayName: "Stroke thickness",
             value: 2
         });
-        // add a new field here with displayName "Stroke color" and initial value of black "#000000"
         this.strokeColor = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .ColorPicker */ .zH({
             name: "strokeColor",
             displayName: "Stroke color",
             value: { value: "#000000" }
         });
+        this.circleOpacity = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .AutoDropdown */ .GN({
+            name: "circleOpacity",
+            displayName: "Circle opacity",
+            value: 0.4
+        });
+        this.fontFamily = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_0__/* .FontPicker */ .xp({
+            name: "fontFamily",
+            displayName: "Font",
+            value: "Arial"
+        });
+        //2 - add new setting for font of value and label
+        //new formattingSettings. I will check the options 
         this.name = "circle";
         this.displayName = "Circle";
-        this.slices = [this.circleColor, this.circleThickness, this.strokeColor];
+        this.slices = [this.circleColor, this.circleThickness, this.strokeColor, this.fontFamily, this.circleOpacity];
     }
 }
 class VisualSettings extends FormattingSettingsModel {
@@ -10006,30 +10019,30 @@ class VisualSettings extends FormattingSettingsModel {
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7429);
 /* harmony import */ var powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4261);
 /*
-*  Power BI Visual CLI
-*
-*  Copyright (c) Microsoft Corporation
-*  All rights reserved.
-*  MIT License
-*
-*  Permission is hereby granted, free of charge, to any person obtaining a copy
-*  of this software and associated documentation files (the ""Software""), to deal
-*  in the Software without restriction, including without limitation the rights
-*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*  copies of the Software, and to permit persons to whom the Software is
-*  furnished to do so, subject to the following conditions:
-*
-*  The above copyright notice and this permission notice shall be included in
-*  all copies or substantial portions of the Software.
-*
-*  THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*  THE SOFTWARE.
-*/
+ *  Power BI Visual CLI
+ *
+ *  Copyright (c) Microsoft Corporation
+ *  All rights reserved.
+ *  MIT License
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the ""Software""), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *  THE SOFTWARE.
+ */
 
 
 
@@ -10038,31 +10051,36 @@ class VisualSettings extends FormattingSettingsModel {
 class Visual {
     constructor(options) {
         this.formattingSettingsService = new powerbi_visuals_utils_formattingmodel__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z();
+        this.logger = d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ys(options.element).append("div");
         this.svg = d3__WEBPACK_IMPORTED_MODULE_0__/* .select */ .Ys(options.element)
-            .append('svg')
-            .classed('circleCard', true);
-        this.container = this.svg.append("g")
-            .classed('container', true);
-        this.circle = this.container.append("circle")
-            .classed('circle', true);
-        this.textValue = this.container.append("text")
-            .classed("textValue", true);
-        this.textLabel = this.container.append("text")
-            .classed("textLabel", true);
+            .append("svg")
+            .classed("circleCard", true);
+        this.container = this.svg.append("g").classed("container", true);
+        this.circle = this.container.append("circle").classed("circle", true);
+        this.textValue = this.container.append("text").classed("textValue", true);
+        this.textLabel = this.container.append("text").classed("textLabel", true);
     }
     update(options) {
         let dataView = options.dataViews[0];
+        const itemType = dataView.metadata.columns[0].expr.arg.ref;
+        if (itemType.toLowerCase() === "product") {
+            this.logger.html("it's product");
+        }
+        else if (itemType.toLowerCase() === "kit type") {
+            this.logger.html("it's Kit Type");
+        }
         let width = options.viewport.width;
         let height = options.viewport.height;
         this.svg.attr("width", width);
         this.svg.attr("height", height);
         let radius = Math.min(width, height) / 2.2;
-        this.visualSettings = this.formattingSettingsService.populateFormattingSettingsModel(_settings__WEBPACK_IMPORTED_MODULE_1__/* .VisualSettings */ .J, options.dataViews);
+        this.visualSettings =
+            this.formattingSettingsService.populateFormattingSettingsModel(_settings__WEBPACK_IMPORTED_MODULE_1__/* .VisualSettings */ .J, options.dataViews);
         this.visualSettings.circle.circleThickness.value = Math.max(0, this.visualSettings.circle.circleThickness.value);
         this.visualSettings.circle.circleThickness.value = Math.min(10, this.visualSettings.circle.circleThickness.value);
         this.circle
             .style("fill", this.visualSettings.circle.circleColor.value.value)
-            .style("fill-opacity", 0.5)
+            .style("fill-opacity", this.visualSettings.circle.circleOpacity.value)
             .style("stroke", this.visualSettings.circle.strokeColor.value.value)
             .style("stroke-width", this.visualSettings.circle.circleThickness.value)
             .attr("r", radius)
@@ -10075,6 +10093,7 @@ class Visual {
             .attr("y", "50%")
             .attr("dy", "0.35em")
             .attr("text-anchor", "middle")
+            .attr("font-family", this.visualSettings.circle.fontFamily.value)
             .style("font-size", fontSizeValue + "px");
         let fontSizeLabel = fontSizeValue / 4;
         this.textLabel
@@ -10083,6 +10102,7 @@ class Visual {
             .attr("y", height / 2)
             .attr("dy", fontSizeValue / 1.2)
             .attr("text-anchor", "middle")
+            .attr("font-family", this.visualSettings.circle.fontFamily.value)
             .style("font-size", fontSizeLabel + "px");
     }
     getFormattingModel() {

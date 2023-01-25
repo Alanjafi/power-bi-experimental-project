@@ -5,6 +5,7 @@ import FormattingSettingsSlice = formattingSettings.Slice;
 import FormattingSettingsModel = formattingSettings.Model;
 
 export class CircleSettings extends FormattingSettingsCard{
+   
     public circleColor = new formattingSettings.ColorPicker({
         name: "circleColor",
         displayName: "Color",
@@ -16,17 +17,35 @@ export class CircleSettings extends FormattingSettingsCard{
         displayName: "Stroke thickness",
         value: 2
     });
-    // add a new field here with displayName "Stroke color" and initial value of black "#000000"
-
     public strokeColor = new formattingSettings.ColorPicker({
         name: "strokeColor",
         displayName: "Stroke color",
         value: { value: "#000000" }
+    }); 
+    public circleOpacity = new formattingSettings.AutoDropdown({
+        name: "circleOpacity",
+        displayName: "Circle opacity",
+        value: 0.4
     });
+
+    
+
+    public fontFamily = new formattingSettings.FontPicker({
+        name: "fontFamily",
+        displayName: "Font",
+        value: "Arial"
+    });
+
+
+    //2 - add new setting for font of value and label
+
+    
+
+    //new formattingSettings. I will check the options 
 
     public name: string = "circle";
     public displayName: string = "Circle";
-    public slices: FormattingSettingsSlice[] = [this.circleColor, this.circleThickness, this.strokeColor]
+    public slices: FormattingSettingsSlice[] = [this.circleColor, this.circleThickness, this.strokeColor, this.fontFamily, this.circleOpacity ]
 }
 
 export class VisualSettings extends FormattingSettingsModel {

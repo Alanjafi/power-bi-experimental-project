@@ -1,53 +1,86 @@
 {
-    "dataRoles": [
-        {
-            "displayName": "Measure Data",
-            "name": "measure",
-            "kind": "Measure"
-        }
-    ],
-    "objects": {
-        "circle": {
-            "properties": {
-                "circleColor": {
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                },
-                "circleThickness": {
-                    "type": {
-                        "numeric": true
-                    }
-                },
-                "strokeColor": {
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                }
+  "dataRoles": [
+    {
+      "displayName": "Measure Data",
+      "name": "measure",
+      "kind": "Measure"
+    }
+  ],
+  "objects": {
+    "circle": {
+      "properties": {
+        "circleColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
             }
-        }
-    },
-    "dataViewMappings": [
-        {
-            "conditions": [
+          }
+        },
+        "circleThickness": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "strokeColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "circleOpacity": {
+          "type": {
+            "enumeration": [
                 {
-                    "measure": {
-                        "max": 1
-                    }
-                }
-            ],
-            "single": {
-                "role": "measure"
+                    "displayName": "0.2",
+                    "value": "0.2"
+                  },
+                  {
+                    "displayName": "0.4",
+                    "value": "0.4"
+                  },
+                  {
+                    "displayName": "0.6",
+                    "value": "0.6"
+                  },
+                  {
+                    "displayName": "0.8",
+                    "value": "0.8"
+                  },
+                  {
+                    "displayName": "1",
+                    "value": "1"
+                  }
+            ]
+          }
+        },
+        "fontFamily": {
+          "type": {
+            "formatting": {
+              "fontFamily": true
             }
+          }
         }
-    ],
-    "privileges": []
+      }
+    }
+  },
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "measure": {
+            "max": 1
+          }
+        }
+      ],
+      "single": {
+        "role": "measure"
+      }
+    }
+  ],
+  "privileges": []
 }

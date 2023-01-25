@@ -6,6 +6,8 @@ export declare class CircleSettings extends FormattingSettingsCard {
     circleColor: formattingSettings.ColorPicker;
     circleThickness: formattingSettings.NumUpDown;
     strokeColor: formattingSettings.ColorPicker;
+    circleOpacity: formattingSettings.AutoDropdown;
+    fontFamily: formattingSettings.FontPicker;
     name: string;
     displayName: string;
     slices: FormattingSettingsSlice[];

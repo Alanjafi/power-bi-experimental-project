@@ -9,6 +9,7 @@ export declare class Visual implements IVisual {
     ƒ: any;
     private host;
     private svg;
+    private logger;
     private container;
     private circle;
     private textValue;
