@@ -51,4 +51,5 @@ export class CircleSettings extends FormattingSettingsCard{
 export class VisualSettings extends FormattingSettingsModel {
     public circle: CircleSettings = new CircleSettings();
     public cards: FormattingSettingsCard[] = [this.circle];
+    static parse: any;
 }

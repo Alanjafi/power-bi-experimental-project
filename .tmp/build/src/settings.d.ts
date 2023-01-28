@@ -15,4 +15,5 @@ export declare class CircleSettings extends FormattingSettingsCard {
 export declare class VisualSettings extends FormattingSettingsModel {
     circle: CircleSettings;
     cards: FormattingSettingsCard[];
+    static parse: any;
 }

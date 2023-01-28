@@ -1,3 +1,4 @@
+import "core-js/stable";
 import "./../style/visual.less";
 import powerbi from "powerbi-visuals-api";
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
@@ -12,9 +13,16 @@ export declare class Visual implements IVisual {
     private logger;
     private container;
     private circle;
+    private path;
+    private path2;
+    private path3;
     private textValue;
     private textLabel;
+    private settings;
+    private recSelection;
     constructor(options: VisualConstructorOptions);
+    private clearAttr;
+    private createProductIcon;
     update(options: VisualUpdateOptions): void;
     getFormattingModel(): powerbi.visuals.FormattingModel;
 }
