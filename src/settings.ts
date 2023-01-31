@@ -29,7 +29,6 @@ export class CircleSettings extends FormattingSettingsCard{
     });
 
     
-
     public fontFamily = new formattingSettings.FontPicker({
         name: "fontFamily",
         displayName: "Font",
